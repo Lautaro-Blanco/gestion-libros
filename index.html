@@ -1,0 +1,113 @@
+<!--1. Crear el archivo index.html en la carpeta raíz del proyecto. 
+2. Definir la estructura básica DOCTYPE html, con lang="es" y charset UTF-8. 
+3. Incluir la etiqueta meta viewport para dispositivos móviles. 
+4. Vincular estilos.css en el head. 
+5. Crear un header con el título de la aplicación y un nav con enlaces internos (anclas). 
+6. En el main, crear dos sections: una para el formulario (id="formulario-seccion") y otra para la tabla (id="tabla-seccion"). 
+7. Dentro de la primera section, crear un formulario con los campos: titulo, autor, genero (select), año, paginas, estado (select). 
+Incluir un botón de tipo submit. 
+8. Dentro de la segunda section, crear una tabla con caption, thead (encabezados) y tbody (vacío inicialmente). 
+9. Agregar una tercera section para estadísticas con una lista desordenada (ul) que se actualizara dinámicamente. 
+10. Finalizar con un footer que contenga información del autor y un enlace al repositorio. 
+11. Vincular los scripts datos.js y app.js antes de cerrar el body.-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de libros</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion de libros</h1>
+        <nav>
+            <a href="#formulario-seccion">Agregar</a>
+            <a href="#tabla-seccion">Coleccion</a>
+            <a href="#estadisticas-seccion">Estadisticas</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="formulario-seccion">
+            <h2>Agregar libro</h2>
+
+            <form>
+                <label>Titulo</label>
+                <input type="text" name="titulo" required>
+
+                <label>Autor</label>
+                <input type="text" name="autor" required>
+
+                <label>Genero:</label>
+                <select name="genero">
+                    <option value="ficcion">Ficcion</option>
+                    <option value="no-ficcion">No ficcion</option>
+                    <option value="terror">Terror</option>
+                    <option value="fantasia">Fantasia</option>
+                    <option value="romance">Romance</option>
+                </select>
+
+                <label>Año:</label>
+                <input type="number" name="anio">
+
+                <label>Paginas:</label>
+                <input type="number" name="paginas">
+
+                <label>Estado:</label>
+                <select name="estado">
+                    <option value="leido">Leido</option>
+                    <option value="leyendo">Leyendo</option>
+                    <option value="pendiente">Pendiente</option>
+                </select>
+
+                <button type="submit">Agregar</button>
+            </form>
+        </section>
+
+        <section id="tabla-seccion">
+            <h2>Mis libros</h2>
+            
+            <table border="1">
+                <caption>Registro de libros</caption>
+
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+                        <th>Genero</th>
+                        <th>Año</th>
+                        <th>Paginas</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+            </table>
+        </section>
+
+        <section id="estadisticas-seccion">
+            <h2>Estadisticas</h2>
+
+            <ul>
+                <li>Total de libros:</li>
+                <li>Leidos:</li>
+                <li>Leyendo:</li>
+                <li>Pendientes:</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Autor: Lautaro Uriel Blanco</p>
+        <a href="https://github.com/Lautaro-Blanco/gestion-libros" target="_blank">Repositorio</a>
+    </footer>
+
+    <script src="datos.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
