@@ -34,7 +34,7 @@ header {
 
 nav {
     display: flex;
-    margin-top: 10px;
+    gap: 15px;
 }
 
 nav a {
@@ -113,15 +113,20 @@ tr:nth-child(even){
 
 .btn-eliminar {
     color: white;
-    background-color: blue;
+    background-color: crimson;
 }
 
-@media (min-width: 768px){
-    form label {
+@media (min-width: 768px){    
+    form label, form input, form select {
         flex: 1 1 48%;
     }
-    
-    form input, form select {
-        flex: 1 1 48%;
+}
+
+@media (max-width: 768px){
+    th:nth-child(4),
+    td:nth-child(4),
+    th:nth-child(5),
+    td:nth-child(5){
+        display: none;
     }
 }

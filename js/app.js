@@ -8,11 +8,14 @@ Date.now().
 6. Agregar un método toJSON() que devuelva un objeto plano para poder serializar.
 7. Agregar un método toString() que devuelva una descripción legible del libro.
 8. Crear una clase abstracta EntidadBase que lance error si se instancia directamente, y que
-Libro herede de ella.
-*/
+Libro herede de ella.*/
 
 class EntidadBase {
-
+    constructor(){
+        if(this.constructor === EntidadBase){
+            throw new Error("No se puede instanciar una clase abstracta");
+        }
+    }
 }
 
 class Libro extends EntidadBase {
@@ -25,13 +28,14 @@ class Libro extends EntidadBase {
     _estado;
 
     constructor(titulo, autor, genero, anio, paginas, estado){
+        super();
         this._id = Date.now();
-        this._titulo = titulo;
-        this._autor = autor;
-        this._genero = genero;
-        this._anio = anio;
-        this._paginas = paginas;
-        this._estado = estado;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.genero = genero;
+        this.anio = anio;
+        this.paginas = paginas;
+        this.estado = estado;
     }
 
     get id(){
@@ -89,7 +93,7 @@ class Libro extends EntidadBase {
     }
 
     set paginas(valor){
-        if(paginas <= 0){
+        if(valor <= 0){
             throw new Error("Canntidad de paginas invalidas");
         }
         this._paginas = Number(valor);
@@ -101,8 +105,55 @@ class Libro extends EntidadBase {
 
     toJSON(){
         return {
-            id
-        }
+            id: this._id,
+            titulo: this._titulo,
+            autor: this._autor,
+            genero: this._genero,
+            anio: this._anio,
+            paginas: this._paginas,
+            estado: this._estado
+        };
+    }
+
+    toString(){
+        return `${this._titulo} - ${this._autor} (${this._anio})`;
     }
 }
 
+/*1. Crear la clase Biblioteca que actuara como gestor de la colección de libros.
+2. La clase Biblioteca debe tener una propiedad privada _libros (array vacío inicialmente).
+3. Implementar método agregarLibro(libro) que agregue un objeto Libro al array con push().
+4. Implementar método eliminarLibro(id) que busque el índice con findIndex() y elimine
+con splice().
+5. Implementar método editarLibro(id, nuevosDatos) que encuentre el libro y actualice sus
+propiedades.
+6. Implementar método guardarEnLocalStorage() que use JSON.stringify() sobre el array de
+objetos toJSON() y lo almacene con localStorage.setItem('biblioteca', ...).
+7. Implementar método cargarDesdeLocalStorage() que recupere el string, lo parse con
+JSON.parse(), y reconstruya instancias de Libro usando Object.assign o creando nuevas
+instancias.
+8. Implementar método obtenerLibros(filtroGenero = 'Todos', filtroEstado = 'Todos') que
+use filter() para devolver solo los libros coincidentes*/
+
+class Biblioteca {
+    _libros;
+
+    constructor(){
+        this._libros = [];
+    }
+
+    agregarLibro(libro){
+        if(!(libro instanceof Libro)){
+            throw new Error("Solo se pueden agregar objetos Libro");
+        }
+
+        this._libros.push(libro);
+    }
+
+    eliminarLibro(id){
+        const indice = this._libros.findIndex(libro => libro.id === id){
+            
+        }
+    }
+
+}
